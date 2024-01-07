@@ -1,0 +1,46 @@
+.dock_bar {
+	background: rgba(10, 10, 10, 0);
+}
+
+button * {
+	background: rgba(10, 10, 10, 0);
+	font-size: 15px;
+}
+
+.Powerbutton {
+	background: rgba(40, 40, 40, 1);
+	border: 0.10rem solid rgba(120, 120, 120, 1);
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+.workspaces {
+	background: rgba(40, 40, 40, 1);
+	border: 0.10rem solid rgba(120, 120, 120, 1);
+	border-radius: 10px;
+}
+
+.Clock {
+	background: rgba(40, 40, 40, 1);
+	border: 0.10rem solid rgba(120, 120, 120, 1);
+	border-radius: 10px;
+}
+
+.Menu {
+	background: rgba(40, 40, 40, 1);
+	border: 0.10rem solid rgba(120, 120, 120, 1);
+	border-radius: 10px;
+button * {
+	background: rgba(50, 50, 50, 1);
+	font-size: 15px;
+	border: 0.10rem solid rgba(120, 120, 120, 1);
+	border-radius: 10px;
+}
+
+button *:hover {
+	background: rgba(10, 10, 255, 1);
+	font-size: 15px;
+	border: 0.10rem solid rgba(120, 120, 120, 1);
+	border-radius: 10px;
+}
+}

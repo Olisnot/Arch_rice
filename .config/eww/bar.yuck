@@ -1,0 +1,102 @@
+(defwidget bar []
+ (box :class "bar" 
+ ))
+
+(defpoll time :interval "1s"
+ "date '+%H:%M'")
+(defwidget time [] 
+ (box :orientation "h" time))
+
+(defwidget powerbutton []
+ (box	
+  (button :class "restart" :onclick "kmix" :onrightclick "killall kmix" "")
+  (eventbox :class "button" :onhover "~/eww/target/release/eww open Menu --screen DP-0" "")
+ )
+ )
+
+    (defwidget menu_content []
+     (eventbox :onhoverlost "~/eww/target/release/eww close Menu"
+      (box :spacing 18  
+       (button :class "sleep" :valign "baseline" :onclick "systemctl suspend" "")
+       (button :class "restart" :onclick "systemctl reboot" "")
+       (button :onclick "systemctl poweroff" "")
+      )
+     )
+    )
+
+    (defwidget workspaces [names]
+     (box
+		:halign "start"
+		:hexpand false
+		:space-evenly true
+		:spacing "12"
+		:css "* {margin-left: 10px; margin-right: 2px; font-size: 15px;}"
+		(box
+			(label :text names))))
+
+            (deflisten current-workspace-index :initial "N/A" `~/.config/eww/scripts/current_workspace.sh`)
+
+
+     (defwindow dock_bar
+      :monitor 0
+      :geometry (geometry :x "0"
+          :y "0"
+          :width "90%"
+          :height "3%"
+          :anchor "top left")
+      :stacking "bg"
+      :reserve (struts :distance "40px" :side "top")
+      :windowtype "dock"
+      :wm-ignore false
+      (bar))
+
+
+     (defwindow Powerbutton
+      :monitor 0
+      :geometry (geometry :x "96%"
+          :y "0.2%"
+          :width "3.5%"
+          :height "2.5%"
+          :anchor "top left")
+      :stacking "fg"
+      :reserve (struts :distance "40px" :side "top")
+      :windowtype "dock"
+      :wm-ignore true
+      (powerbutton))
+
+
+     (defwindow Clock
+      :monitor 0
+      :geometry (geometry :x "48%"
+          :y "0.2%"
+          :width "4%"
+          :height "2.5%"
+          :anchor "top left")
+      :stacking "fg"
+      :windowtype "dock"
+      :wm-ignore true
+      (time))
+
+     (defwindow Menu
+      :monitor 0
+      :geometry (geometry :x "84.5%"
+          :y "3%"
+          :width "15%"
+          :height "8%"
+          :anchor "top left")
+      :stacking "fg"
+      :windowtype "dialog"
+      :wm-ignore true
+      (menu_content))
+
+     (defwindow workspaces
+      :monitor 0
+      :geometry (geometry :x "0.4%"
+          :y "0.2%"
+          :width "0.4%"
+          :height "2.5%"
+          :anchor "top left")
+      :stacking "fg"
+      :windowtype "dock"
+      :wm-ignore true
+      (workspaces :names current-workspace-index))
